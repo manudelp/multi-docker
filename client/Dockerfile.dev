@@ -1,17 +1,6 @@
-# Base image: Use the Long Term Support version of Node.js with Alpine Linux (smaller size)
 FROM node:lts-alpine
-
-# Set the working directory inside the container
 WORKDIR '/app'
-
-# Copy package.json to working directory (before other files for better caching)
 COPY ./package.json ./
-
-# Install dependencies from package.json
 RUN npm install
-
-# Copy all files from current directory to working directory in container
 COPY . .
-
-# Command to run when container starts - starts the development server
 CMD ["npm", "run", "start"]

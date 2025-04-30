@@ -1,17 +1,6 @@
-# Use Node.js version 14.14.0 with Alpine Linux as the base image
-FROM node:14.14.0-alpine
-
-# Set the working directory inside the container to /app
-WORKDIR '/app'
-
-# Copy the package.json file from the host to the container's working directory
+FROM node:lts-alpine
+WORKDIR "/app"
 COPY ./package.json ./
-
-# Install all dependencies defined in package.json
 RUN npm install
-
-# Copy all files from the current directory on the host to the container's working directory
 COPY . .
-
-# Define the command to run when the container starts - in this case, run the dev script
 CMD ["npm", "run", "dev"]
